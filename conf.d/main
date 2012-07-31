@@ -1,0 +1,17 @@
+#!/bin/sh -ex
+
+# configure tkl-webcp
+WEBAPPS=/var/lib/tomcat6/webapps/
+WEBROOT=$WEBAPPS/cp
+mv $WEBAPPS/ROOT $WEBROOT
+
+rm $WEBROOT/index.html
+
+for dir in js css images; do
+    mkdir -p $WEBROOT/$dir
+    cp -a /var/www/$dir/* $WEBROOT/$dir
+    rm -rf /var/www/$dir
+done
+
+sed -i "s|HOSTNAME_DESC|Tomcat Apache|g" $WEBROOT/index.jsp
+sed -i "s|HOSTNAME|tomcat-apache|g" $WEBROOT/index.jsp
