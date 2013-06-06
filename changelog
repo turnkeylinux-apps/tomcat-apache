@@ -1,6 +1,6 @@
 turnkey-tomcat-apache-12.1 (1) turnkey; urgency=low
 
-  * Latest version of Tomcat will be installed at build time.
+  * Latest Debian Squeeze package version of Tomcat.
 
   * Note: Please refer to turnkey-core's changelog for changes common to all
     appliances. Here we only describe changes specific to this appliance.
