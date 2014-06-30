@@ -16,6 +16,13 @@ and on top of that:
 
 - Tomcat on Apache configurations:
    
+   - TurnKey web control panel in /var/lib/tomcat6/webapps/cp
+
+     /etc/tomcat6/mod_jk.conf redirects the root web page to the control
+     panel::
+
+        RedirectMatch ^/$ /cp
+
    - All components installed from package management.
    - Using OpenJDK Java runtime.
    - Deployed web applications in /var/lib/tomcat6/webapps.
