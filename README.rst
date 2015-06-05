@@ -25,8 +25,8 @@ and on top of that:
 
    - All components installed from package management.
    - Using OpenJDK Java runtime.
-   - Deployed web applications in /var/lib/tomcat6/webapps.
-   - TurnKey web control panel in /var/lib/tomcat6/webapps/cp.
+   - Deployed web applications in /var/lib/tomcat7/webapps.
+   - TurnKey web control panel in /var/lib/tomcat7/webapps/cp.
    - JSP console output sent to syslog (/var/log/syslog).
    - Created Tomcat admin/manager roles and admin user.
    - Use Apache2 Jk loadbalancer connector (performance).
