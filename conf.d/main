@@ -1,7 +1,9 @@
 #!/bin/sh -ex
 
+a2dissite 000-default
+
 # configure tkl-webcp
-WEBAPPS=/var/lib/tomcat6/webapps/
+WEBAPPS=/var/lib/tomcat7/webapps/
 WEBROOT=$WEBAPPS/cp
 mv $WEBAPPS/ROOT $WEBROOT
 
