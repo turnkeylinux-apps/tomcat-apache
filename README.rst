@@ -16,9 +16,9 @@ and on top of that:
 
 - Tomcat on Apache configurations:
    
-   - TurnKey web control panel in /var/lib/tomcat6/webapps/cp
+   - TurnKey web control panel in /var/lib/tomcat7/webapps/cp
 
-     /etc/tomcat6/mod_jk.conf redirects the root web page to the control
+     /etc/tomcat7/mod_jk.conf redirects the root web page to the control
      panel::
 
         RedirectMatch ^/$ /cp
