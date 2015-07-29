@@ -9,6 +9,3 @@ openjdk-7-jre
 mysql-server
 libmysql-java
 webmin-mysql
-
-postfix
-webmin-postfix
