@@ -2,6 +2,9 @@
 
 a2dissite 000-default
 
+# remove tomcat sslcert gen inithook (not required when Tomcat proxied by Apache)
+rm -rf /usr/lib/inithooks/firstboot.d/16tomcat-sslcert
+
 # configure tkl-webcp
 WEBAPPS=/var/lib/tomcat7/webapps/
 WEBROOT=$WEBAPPS/cp
