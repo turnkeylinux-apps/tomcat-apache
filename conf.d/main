@@ -6,7 +6,7 @@ a2dissite 000-default
 rm -rf /usr/lib/inithooks/firstboot.d/16tomcat-sslcert
 
 # configure tkl-webcp
-WEBAPPS=/var/lib/tomcat7/webapps/
+WEBAPPS=/var/lib/tomcat8/webapps/
 WEBROOT=$WEBAPPS/cp
 mv $WEBAPPS/ROOT $WEBROOT
 
