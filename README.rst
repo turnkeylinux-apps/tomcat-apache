@@ -16,17 +16,17 @@ and on top of that:
 
 - Tomcat on Apache configurations:
    
-   - TurnKey web control panel in /var/lib/tomcat7/webapps/cp
+   - TurnKey web control panel in /var/lib/tomcat8/webapps/cp
 
-     /etc/tomcat7/mod_jk.conf redirects the root web page to the control
+     /etc/tomcat8/mod_jk.conf redirects the root web page to the control
      panel::
 
         RedirectMatch ^/$ /cp
 
    - All components installed from package management.
    - Using OpenJDK Java runtime.
-   - Deployed web applications in /var/lib/tomcat7/webapps.
-   - TurnKey web control panel in /var/lib/tomcat7/webapps/cp.
+   - Deployed web applications in /var/lib/tomcat8/webapps.
+   - TurnKey web control panel in /var/lib/tomcat8/webapps/cp.
    - JSP console output sent to syslog (/var/log/syslog).
    - Created Tomcat admin/manager roles and admin user.
    - Use Apache2 Jk loadbalancer connector (performance).
