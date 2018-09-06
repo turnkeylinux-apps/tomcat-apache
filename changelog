@@ -2,8 +2,8 @@ turnkey-tomcat-apache-15.0 (1) turnkey; urgency=low
 
   * Tomcat:
 
-    - Update to Tomcat8 (Latest Debian Jessie package version of Tomcat).
-    - Update to OpenJDK-8 (Latest Debian Jessie package version of OpenJDK).
+    - Update to Tomcat8 (Latest Debian 9/Stretch package version of Tomcat).
+    - Update to OpenJDK-8 (Latest Debian 9/Stretch package version of OpenJDK).
 
   * Install Adminer directly from stretch/main repo
 
