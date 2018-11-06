@@ -18,10 +18,10 @@ and on top of that:
    
    - TurnKey web control panel in /var/lib/tomcat8/webapps/cp
 
-     /etc/tomcat8/mod_jk.conf redirects the root web page to the control
-     panel::
+     The default Apache index file (/var/www/index.html) uses javascript
+     to redirect the root web page to the control panel::
 
-        RedirectMatch ^/$ /cp
+        window.location = "/cp"
 
    - All components installed from package management.
    - Using OpenJDK Java runtime.
