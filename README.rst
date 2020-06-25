@@ -16,7 +16,7 @@ and on top of that:
 
 - Tomcat on Apache configurations:
    
-   - TurnKey web control panel in /var/lib/tomcat8/webapps/cp
+   - TurnKey web control panel in /var/lib/tomcat9/webapps/cp
 
      The default Apache index file (/var/www/index.html) uses javascript
      to redirect the root web page to the control panel::
@@ -25,8 +25,8 @@ and on top of that:
 
    - All components installed from package management.
    - Using OpenJDK Java runtime.
-   - Deployed web applications in /var/lib/tomcat8/webapps.
-   - TurnKey web control panel in /var/lib/tomcat8/webapps/cp.
+   - Deployed web applications in /var/lib/tomcat9/webapps.
+   - TurnKey web control panel in /var/lib/tomcat9/webapps/cp.
    - JSP console output sent to syslog (/var/log/syslog).
    - Created Tomcat admin/manager roles and admin user.
    - Use Apache2 Jk loadbalancer connector (performance).
