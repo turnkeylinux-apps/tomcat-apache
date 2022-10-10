@@ -1,3 +1,13 @@
+turnkey-tomcat-apache-17.1 (1) turnkey; urgency=low
+
+  * Updated all Debian packages to latest.
+    [ autopatched by buildtasks ]
+
+  * Patched bugfix release. Closes #1734.
+    [ autopatched by buildtasks ]
+
+ -- Jeremy Davis <jeremy@turnkeylinux.org>  Wed, 14 Sep 2022 07:03:09 +0000
+
 turnkey-tomcat-apache-17.0 (1) turnkey; urgency=low
 
   * Updated all relevant Debian packages to Bullseye/11 versions
