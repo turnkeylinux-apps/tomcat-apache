@@ -1,3 +1,13 @@
+turnkey-tomcat-apache-18.0 (1) turnkey; urgency=low
+
+  * Updated all relevant Debian packages to Bookworm/12 versions; including
+    Tomcat 10 & Java 17.
+
+  * Note: Please refer to turnkey-core's changelog for changes common to all
+    appliances. Here we only describe changes specific to this appliance.
+
+ -- Anton Pyrogovskyi <anton@turnkeylinux.org>  Mon, 29 Apr 2024 17:39:24 +0200
+
 turnkey-tomcat-apache-17.1 (1) turnkey; urgency=low
 
   * Updated all Debian packages to latest.
