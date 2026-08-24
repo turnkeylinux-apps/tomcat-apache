@@ -4,6 +4,7 @@ umask 077
 
 result=${TKL_TEST_RESULT:?TKL_TEST_RESULT is required}
 password=${TKL_TEST_APP_PASS:?TKL_TEST_APP_PASS is required}
+db_password=${TKL_TEST_DB_PASS:?TKL_TEST_DB_PASS is required}
 response=/tmp/tkl-tomcat-apache-response.$$
 headers=/tmp/tkl-tomcat-apache-headers.$$
 apache_modules=/tmp/tkl-tomcat-apache-modules.$$
@@ -21,7 +22,8 @@ trap 'report_error "$LINENO" "$?" "$BASH_COMMAND"' ERR
 cleanup() {
     rm -f -- "$response" "$headers" "$apache_modules" "$policy" "$probe"
     if $database_created; then
-        mariadb --execute "DROP DATABASE IF EXISTS $database" || true
+        mariadb --user=root --password="$db_password" \
+            --execute "DROP DATABASE IF EXISTS $database" || true
     fi
 }
 trap cleanup EXIT
@@ -60,9 +62,20 @@ dpkg-query -W turnkey-tomcat-apache-19.0 webmin-apache webmin-mysql \
 
 test -d /var/lib/tomcat10/webapps/cp
 test ! -d /var/lib/tomcat10/webapps/ROOT
-test -d /var/lib/tomcat10/webapps/manager
-test -d /var/lib/tomcat10/webapps/host-manager
-test -d /var/lib/tomcat10/webapps/docs
+python3 - <<'PYTHON'
+import os
+import xml.etree.ElementTree as ET
+
+contexts = {
+    "manager": "/usr/share/tomcat10-admin/manager",
+    "host-manager": "/usr/share/tomcat10-admin/host-manager",
+    "docs": "/usr/share/tomcat10-docs/docs",
+}
+for name, doc_base in contexts.items():
+    descriptor = f"/etc/tomcat10/Catalina/localhost/{name}.xml"
+    assert ET.parse(descriptor).getroot().get("docBase") == doc_base
+    assert os.path.isdir(doc_base)
+PYTHON
 grep -q 'CATALINA_HOME="/usr/share/tomcat10"' /etc/environment
 grep -q 'JAVA_HOME="/usr/lib/jvm/java-21-openjdk-amd64"' /etc/environment
 grep -q '^JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64' \
@@ -111,7 +124,8 @@ curl --insecure --fail --silent --show-error --user "admin:$password" \
 grep -q 'Tomcat Web Application Manager' "$response"
 curl --insecure --fail --silent --show-error --user "admin:$password" \
     https://127.0.0.1/manager/text/serverinfo >"$response"
-grep -q '^OK - Server version:' "$response"
+grep -Fxq 'OK - Server info' "$response"
+grep -q '^Tomcat Version: \[Apache Tomcat/10\.1\.' "$response"
 curl --insecure --fail --silent --show-error --user "admin:$password" \
     https://127.0.0.1/manager/text/list >"$response"
 grep -Eq '^/cp:running:' "$response"
@@ -140,13 +154,16 @@ rm -f -- "$probe"
 
 curl --insecure --fail --silent --show-error --head \
     https://127.0.0.1:12321/ >/dev/null
-mariadb --execute "CREATE DATABASE $database"
+mariadb --user=root --password="$db_password" \
+    --execute "CREATE DATABASE $database"
 database_created=true
-mariadb "$database" --execute \
+mariadb --user=root --password="$db_password" "$database" --execute \
     'CREATE TABLE probe (value VARCHAR(32)); INSERT INTO probe VALUES ("database-ok")'
-mariadb --batch --skip-column-names "$database" \
+mariadb --user=root --password="$db_password" --batch --skip-column-names \
+    "$database" \
     --execute 'SELECT value FROM probe' | grep -Fxq 'database-ok'
-mariadb --execute "DROP DATABASE $database"
+mariadb --user=root --password="$db_password" \
+    --execute "DROP DATABASE $database"
 database_created=false
 
 before="$tomcat_package|$tomcat_admin_package|$apache_package|$jk_package|$java_package|$mariadb_package"
