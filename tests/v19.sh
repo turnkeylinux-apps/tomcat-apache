@@ -44,7 +44,11 @@ java_package=$(dpkg-query -W -f='${Version}' openjdk-21-jre-headless)
 mariadb_package=$(dpkg-query -W -f='${Version}' mariadb-server)
 java_version=$(java -version 2>&1 | head -n 1)
 tomcat_version=$(/usr/share/tomcat10/bin/version.sh 2>&1 | \
-    awk -F': ' '/Server number/ {print $2}')
+    awk '/^Server number:/ {
+        sub(/^[^:]+:[[:space:]]*/, "")
+        print
+        exit
+    }')
 
 grep -q '^10\.1\.' <<<"$tomcat_version"
 grep -q 'version "21\.' <<<"$java_version"
