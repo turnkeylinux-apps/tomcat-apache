@@ -12,6 +12,12 @@ probe=/var/lib/tomcat10/webapps/cp/tkl-v19-probe.jsp
 database=tkl_tomcat_apache_v19_acceptance
 database_created=false
 
+report_error() {
+    printf 'test_failure line=%s status=%s command=%q\n' "$1" "$2" "$3" >&2
+    exit "$2"
+}
+trap 'report_error "$LINENO" "$?" "$BASH_COMMAND"' ERR
+
 cleanup() {
     rm -f -- "$response" "$headers" "$apache_modules" "$policy" "$probe"
     if $database_created; then
