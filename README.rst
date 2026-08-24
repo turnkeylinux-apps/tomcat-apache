@@ -23,11 +23,11 @@ and on top of that:
 
         window.location = "/cp/"
 
-   - All components installed from package management.
-   - Using OpenJDK Java runtime.
+   - Tomcat 10.1 and all components installed from package management.
+   - Using the OpenJDK 21 Java runtime from Debian.
    - Deployed web applications in /var/lib/tomcat10/webapps.
    - TurnKey web control panel in /var/lib/tomcat10/webapps/cp.
-   - JSP console output sent to syslog (/var/log/syslog).
+   - JSP console output available through the systemd journal.
    - Created Tomcat admin/manager roles and admin user.
    - Use Apache2 Jk loadbalancer connector (performance).
    - JkMounts for admin, manager, host-manager applications
@@ -36,16 +36,16 @@ and on top of that:
    - Removed Tomcat HTTP connector listener (security).
    - Set system wide Tomcat and Java environment variables.
 
-- Includes MySQL.
+- Includes MariaDB, a MySQL-compatible database server.
 - SSL support out of the box.
-- Includes Webmin module for configuring Apache2 and MySQL.
+- Includes Webmin modules for configuring Apache2 and MariaDB.
 
 See the `Tomcat on Apache docs`_ for further details.
 
 Credentials *(passwords set at first boot)*
 -------------------------------------------
 
--  Webmin, SSH, MySQL: username **root**
+-  Webmin, SSH, MariaDB: username **root**
 -  Tomcat administration applications: username **admin**
 
 
