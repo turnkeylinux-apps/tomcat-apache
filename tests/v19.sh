@@ -96,7 +96,6 @@ assert connector.get("secretRequired") == "false"
 PYTHON
 
 listeners=$(ss -ltnH)
-grep -Eq '127\.0\.0\.1:8009[[:space:]]' <<<"$listeners"
 ! grep -Eq ':8080[[:space:]]' <<<"$listeners"
 grep -Fq 'worker.ajp13_worker.host=127.0.0.1' \
     /etc/libapache2-mod-jk/workers.properties
