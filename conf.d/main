@@ -15,3 +15,4 @@ done
 
 sed -i "s|HOSTNAME_DESC|Tomcat Apache|g" $WEBROOT/index.jsp
 sed -i "s|HOSTNAME|tomcat-apache|g" $WEBROOT/index.jsp
+sed -i "s|tomcat-9.0-doc|tomcat-10.1-doc|g" $WEBROOT/index.jsp
